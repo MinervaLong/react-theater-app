@@ -6,6 +6,7 @@ const Text = styled.p`
     font-weight: bold;
     font-size: 17pt;
     font-style:italic;
+    margin:0;
 `
 
 const Linia = (props) => {

@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import './App.css';
 import Linia from './Linia'
 import Heading from './Heading'
@@ -23,7 +24,7 @@ const Container = styled.section`
 const TextWrapper = styled.div`
   background-color:#676666;
   padding: 0 1rem 0 1rem;
-  max-width: 40%;
+  width: 25%;
   opacity:0.7;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -33,24 +34,84 @@ const TextWrapper = styled.div`
   align-content: center;
   align-items: left;
   
-  @media (max-width: 600px){
-    max-width: 80%;
+  @media (max-width: 1024px){
+    width: 43%;
   }
 
+  @media (max-width: 700px){
+    width: 80%;
+  }
+
+`
+const Button = styled.button`
+    background-color: #1f2022;
+    border-color: #1f2022;
+    font-size: 18pt;
+    color: #a6afbf;
+    padding: 1rem 4rem 1rem 4rem;
+    width: 50%;
+    cursor: pointer;
+
+    :actived {
+        background-color: #1f2022;
+        border-color: #1f2022;
+    }
+
+    @media (max-width: 1500px){
+      width: 43%;
+      padding: 1rem 2rem 1rem 2rem
+    }
+
+    @media (max-width: 800px){
+        flex-direction: column;
+        width: 100%;
+        
+    } 
+`
+const ButtonWrapper = styled.div`
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+
+  @media (max-width: 800px){
+      flex-direction: column;
+  }
 `
 
 const App = () => {
 
-  const liniaComponent = drama.map((phrase,index) => {
-    return(
-      <Linia key={index} phrase={phrase} />
-    )
+  const [index, setIndex] = useState(0);
+
+  const next = () => {
+    setIndex(index => index + 1)
+  }
+
+  const prev = ()=> {
+    setIndex(index => index - 1)
+  } 
+
+
+  let liniaComponent = drama.map((phrase,dramaIndex) => {
+    if(dramaIndex === index){
+      return <Linia key={dramaIndex} phrase={phrase} />
+    }
+    return null
+           
   })
+
   return (
     <Container>
       <TextWrapper>
         <Heading />
-        {liniaComponent}</TextWrapper>
+        {liniaComponent}
+        <ButtonWrapper>
+        <Button onClick={prev}>Previous</Button>
+        <Button onClick={next}>Next</Button>
+        </ButtonWrapper>
+      </TextWrapper>      
     </Container>
   );
 }
