@@ -81,38 +81,28 @@ const ButtonWrapper = styled.div`
   }
 `
 
-
 const App = () => {
   const [index, setIndex] = useState(0); 
 
   const next = () => {
     setIndex(index => index + 1)
-    console.log('next line')
-    console.log(index)
   }
 
   const prev = ()=> {
     setIndex(index => index - 1)
-    console.log('previous line')
-    console.log(index)
   } 
-
-
+  
   let liniaComponent = drama.map((phrase,dramaIndex) => {
-    console.log(dramaIndex)
-      return ( dramaIndex === index ? 
-        <Linia key={dramaIndex} phrase={phrase} primary/>
-      : <Linia key={dramaIndex} phrase={phrase} />   
-      )          
+      return (dramaIndex === index ? <Linia key={dramaIndex} phrase={phrase} color/>
+      : <Linia key={dramaIndex} phrase={phrase} color={false}/>) 
   })
-
 
 
   return (
     <Container>
       <TextWrapper>
         <Heading />
-        {liniaComponent}
+        {liniaComponent}                  
         <ButtonWrapper>
         <Button onClick={prev}>Previous</Button>
         <Button onClick={next}>Next</Button>
