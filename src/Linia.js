@@ -1,5 +1,5 @@
 import React from 'react' 
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const Text = styled.p`
     color: #FFFFFF;
@@ -7,11 +7,17 @@ const Text = styled.p`
     font-size: 17pt;
     font-style:italic;
     margin:0;
-`
+
+    ${props => props.primary &&
+        css`
+            text-decoration: underline black;
+        `
+    }  
+`;
 
 const Linia = (props) => {
     return(
-        <Text>{props.phrase}</Text>
+        <Text >{props.phrase}</Text>
     )
 }
 
