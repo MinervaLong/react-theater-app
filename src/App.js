@@ -85,11 +85,14 @@ const App = () => {
   const [index, setIndex] = useState(0); 
 
   const next = () => {
+    index < drama.length ?
     setIndex(index => index + 1)
+    : setIndex(index => 0)     
   }
 
   const prev = ()=> {
-    setIndex(index => index - 1)
+    index > 0 ? setIndex(index => index - 1)
+    : setIndex(index => 0)
   } 
   
   let liniaComponent = drama.map((phrase,dramaIndex) => {
